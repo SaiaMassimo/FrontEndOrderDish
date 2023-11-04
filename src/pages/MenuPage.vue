@@ -1,6 +1,5 @@
 <template>
   <q-page class="row">
-    <!--<q-scroll-observer @scroll="onScroll"></q-scroll-observer> div class imgback-->
     <div class="col-md-3  q-display-flex q-item-center  q-pb-xl">
       <img src="../assets/buonaCartoon.svg" alt="Logo" class="q-mt-md q-mb-xl q-md-hidden"
         style="height: 100vh; position: fixed; z-index: 999; object-position: -100vh -10vh;" v-if="$q.screen.gt.sm" />
@@ -16,52 +15,18 @@
               Prezzo
             </div>
           </div>
-          <div class="col text-right ">media/grande</div>
           <div v-for="item in dishStore.menu.filter(item => item.tipology == 'Piazza Classica')" :key="item.name">
             <div class="row item-section q-mt-sm">
               <div class="col-8">{{ item.name }}</div>
 
               <div class="col-4 text-right">
-                {{ item.priceSmall }}
-                /
                 {{ item.price }} CHF
 
               </div>
             </div>
             <div class="row undertext">{{ item.ingredients.map(ingredient => ingredient.name).join(', ') }}</div>
           </div>
-          <div class="row item-section q-mt-xl">
-            <div class="col-8">PIZZE POTAFOGLIO</div>
-          </div>
-          <div v-for="item in dishStore.menu.filter(item => item.tipology == 'Piazza Portafoglio')" :key="item.name">
-            <div class="row item-section q-mt-sm">
-              <div class="col-8">{{ item.name }}</div>
 
-              <div class="col-4 text-right">
-                {{ item.priceSmall }}
-                /
-                {{ item.price }} CHF
-
-              </div>
-            </div>
-            <div class="row undertext">{{ item.ingredients.map(ingredient => ingredient.name).join(', ') }}</div>
-          </div>
-          <div class="row item-section q-mt-xl">
-            <div class="col-8">PANINI</div>
-          </div>
-          <div v-for="item in dishStore.menu.filter(item => item.tipology == 'Panino')" :key="item.name">
-            <div class="row item-section q-mt-sm">
-              <div class="col-8">{{ item.name }}</div>
-
-              <div class="col-4 text-right">
-                {{ item.priceSmall }}
-                /
-                {{ item.price }} CHF
-
-              </div>
-            </div>
-            <div class="row undertext">{{ item.ingredients.map(ingredient => ingredient.name).join(', ') }}</div>
-          </div>
         </div>
       </div>
     </div>
@@ -82,7 +47,7 @@
       <div class="column">
         <div class="text-black">seguci su</div>
         <div class="row justify-center text-black">
-          <q-btn flat round dense icon="img:../../public/icons/instagram.svg" />
+          <q-btn flat round dense icon="img:icons/instagram.svg" href="https://www.instagram.com/madamlugano/" />
         </div>
       </div>
     </div>
@@ -146,7 +111,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useDishStore } from 'stores/menu-store'
-import { event } from 'quasar';
 
 export default defineComponent({
   name: 'MenuPage',
@@ -173,14 +137,7 @@ export default defineComponent({
     const stato = ref(false)
     setTimeout(() => stato.value = true, 3000)
     return {
-      dishStore, stato,
-      onScroll(info) {
-        const position = info.position
-        console.log(position)
-        /*if ((scrollTop + offsetHeight) >= scrollHeight) {
-          console.log('bottom!')
-        }*/
-      }
+      dishStore, stato
     };
   }
 });
